@@ -1,5 +1,6 @@
 package com.ajay.Bus.Scheduling.and.RouteManagement.System.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Schedule {
 	private int scheduleId;
 	private LocalDateTime departureTime;
 	private LocalDateTime arrivalTime;
+	private LocalDate travelDate;
 	private int availabeSeats;
 	private double price;
 	@ManyToOne
@@ -31,13 +33,14 @@ public class Schedule {
 	private List<Booking> bookings;
 	
 	public Schedule(int scheduleId, LocalDateTime departureTime, LocalDateTime arrivalTime, int availabeSeats,
-			double price, Bus bus, Route route, List<Booking> bookings) {
+			double price,LocalDate travelDate, Bus bus, Route route, List<Booking> bookings) {
 		super();
 		this.scheduleId = scheduleId;
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
 		this.availabeSeats = availabeSeats;
 		this.price = price;
+		this.travelDate=travelDate;
 		this.bus = bus;
 		this.route = route;
 		this.bookings = bookings;
@@ -47,6 +50,12 @@ public class Schedule {
 	}
 	public Route getRoute() {
 		return route;
+	}
+	public LocalDate getTravelDate() {
+		return travelDate;
+	}
+	public void setTravelDate(LocalDate travelDate) {
+		this.travelDate = travelDate;
 	}
 	public void setRoute(Route route) {
 		this.route = route;
@@ -96,8 +105,8 @@ public class Schedule {
 	@Override
 	public String toString() {
 		return "Schedule [scheduleId=" + scheduleId + ", departureTime=" + departureTime + ", arrivalTime="
-				+ arrivalTime + ", availabeSeats=" + availabeSeats + ", price=" + price + ", bus=" + bus + ", route="
-				+ route + ", bookings=" + bookings + "]";
+				+ arrivalTime + ", travelDate=" + travelDate + ", availabeSeats=" + availabeSeats + ", price=" + price
+				+ ", bus=" + bus + ", route=" + route + ", bookings=" + bookings + "]";
 	}
 	
 	

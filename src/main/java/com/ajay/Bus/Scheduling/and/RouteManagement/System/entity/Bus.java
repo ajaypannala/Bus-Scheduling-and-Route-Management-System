@@ -16,6 +16,7 @@ public class Bus {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int busId;
 	private int busNumber;
+	private String busName;
 	private String busType;
 	private int totalseats;
 	private String status;
@@ -25,12 +26,13 @@ public class Bus {
 	private Driver driver;
 	
 	
-	public Bus(int busId, int busNumber, String busType, int totalseats, String status, List<Schedule> schedules,
+	public Bus(int busId, int busNumber, String busType, String busName ,int totalseats, String status, List<Schedule> schedules,
 			Driver driver) {
 		super();
 		this.busId = busId;
 		this.busNumber = busNumber;
 		this.busType = busType;
+		this.busName=busName;
 		this.totalseats = totalseats;
 		this.status = status;
 		this.schedules = schedules;
@@ -41,6 +43,12 @@ public class Bus {
 	}
 	public int getBusId() {
 		return busId;
+	}
+	public String getBusName() {
+		return busName;
+	}
+	public void setBusName(String busName) {
+		this.busName = busName;
 	}
 	public Driver getDriver() {
 		return driver;
@@ -84,8 +92,9 @@ public String getStatus() {
 	}
 	@Override
 	public String toString() {
-		return "Bus [busId=" + busId + ", busNumber=" + busNumber + ", busType=" + busType + ", totalseats="
-				+ totalseats + ", status=" + status + ", schedules=" + schedules + ", driver=" + driver + "]";
+		return "Bus [busId=" + busId + ", busNumber=" + busNumber + ", busName=" + busName + ", busType=" + busType
+				+ ", totalseats=" + totalseats + ", status=" + status + ", schedules=" + schedules + ", driver="
+				+ driver + "]";
 	}
 	
 
