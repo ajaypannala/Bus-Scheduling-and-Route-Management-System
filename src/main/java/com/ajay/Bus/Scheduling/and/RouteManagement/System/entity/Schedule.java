@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class Schedule {
 	@JoinColumn(name ="route_id")
 	private Route route;
 	@OneToMany(mappedBy="schedule",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<Booking> bookings;
 	
 	public Schedule(int scheduleId, LocalDateTime departureTime, LocalDateTime arrivalTime, int availabeSeats,

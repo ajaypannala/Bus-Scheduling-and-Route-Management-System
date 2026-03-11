@@ -2,6 +2,8 @@ package com.ajay.Bus.Scheduling.and.RouteManagement.System.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +21,9 @@ public class Route {
 	private String estimatedTime;
 	private double distace;
 	@OneToMany(mappedBy="route",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<Schedule> schedules;
+	
 	
 	public List<Schedule> getSchedules() {
 		return schedules;

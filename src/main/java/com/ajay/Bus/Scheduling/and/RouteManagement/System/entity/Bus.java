@@ -2,6 +2,8 @@ package com.ajay.Bus.Scheduling.and.RouteManagement.System.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class Bus {
 	private int totalseats;
 	private String status;
 	@OneToMany(mappedBy ="bus",cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Schedule> schedules;
 	@OneToOne(mappedBy="assignBus")
 	private Driver driver;

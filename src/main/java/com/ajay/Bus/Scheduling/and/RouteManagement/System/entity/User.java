@@ -2,6 +2,8 @@ package com.ajay.Bus.Scheduling.and.RouteManagement.System.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,18 +15,19 @@ import jakarta.persistence.OneToMany;
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int userId;
+	private Integer userId;
 	private String name;
-	private String Email;
+	private String email;
 	private String password;
 	private String role;
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Booking> bookings;
-	public User(int userId, String name, String email, String password, String role, List<Booking> bookings) {
+	public User(Integer userId, String name, String email, String password, String role, List<Booking> bookings) {
 		super();
 		this.userId = userId;
 		this.name = name;
-		Email = email;
+		this.email = email;
 		this.password = password;
 		this.role = role;
 		this.bookings = bookings;
@@ -41,7 +44,7 @@ public class User {
 	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	public String getName() {
@@ -51,10 +54,10 @@ public class User {
 		this.name = name;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	public String getPassword() {
 		return password;
@@ -70,7 +73,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", Email=" + Email + ", password=" + password + ", role="
+		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password + ", role="
 				+ role + ", bookings=" + bookings + "]";
 	}
 	
