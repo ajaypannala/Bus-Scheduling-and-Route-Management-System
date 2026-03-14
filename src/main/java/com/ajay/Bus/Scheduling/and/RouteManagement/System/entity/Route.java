@@ -1,9 +1,15 @@
 package com.ajay.Bus.Scheduling.and.RouteManagement.System.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Route {
@@ -14,13 +20,26 @@ public class Route {
 	private String destination;
 	private String estimatedTime;
 	private double distace;
-	public Route(int routeId, String source, String destination, String estimatedTime, double distace) {
+	@OneToMany(mappedBy="route",cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<Schedule> schedules;
+	
+	
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+	public Route(int routeId, String source, String destination, String estimatedTime, double distace,
+			List<Schedule> schedules) {
 		super();
 		this.routeId = routeId;
 		this.source = source;
 		this.destination = destination;
 		this.estimatedTime = estimatedTime;
 		this.distace = distace;
+		this.schedules = schedules;
 	}
 	public Route() {
 		
@@ -58,7 +77,7 @@ public class Route {
 	@Override
 	public String toString() {
 		return "Route [routeId=" + routeId + ", source=" + source + ", destination=" + destination + ", estimatedTime="
-				+ estimatedTime + ", distace=" + distace + "]";
+				+ estimatedTime + ", distace=" + distace + ", schedules=" + schedules + "]";
 	}
 	
 	
